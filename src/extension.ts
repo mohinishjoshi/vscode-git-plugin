@@ -35,7 +35,19 @@ export function activate(context: vscode.ExtensionContext) {
 		// vscode.window.showInformationMessage('Hello World from vtaptheiaextension!');
 		// console.log("Hello");
 		// console.log(vscode.commands.getCommands());
-		vscode.commands.executeCommand('git.checkout', 'new_branch');
+		// vscode.commands.executeCommand('git.checkout', 'new_branch');
+		try{
+			// const urlParams = new URLSearchParams('');
+			// let branch = urlParams.get('branch') || '';
+			gitCheckout('dev').then( data =>{
+				console.log("Success", data);
+			})
+			.catch(err => {
+				console.log("error", err);
+			});
+		} catch(err){
+			console.log(err);
+		}
 	});
 
 	context.subscriptions.push(disposable);

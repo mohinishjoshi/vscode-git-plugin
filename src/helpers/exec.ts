@@ -1,7 +1,7 @@
 import * as childProcess from 'child_process';
 import { workspace } from 'vscode';
 
-const cwd = './';
+const cwd = workspace.workspaceFolders[0].uri.fsPath;
 
 export default async function(command: string, args: string[]): Promise<any> {
   return new Promise((resolve, reject) => {
