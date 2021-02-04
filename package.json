@@ -3,6 +3,7 @@
 	"displayName": "vtaptheiaextension",
 	"description": "vtap extension for theia to automate checkouts from url params",
 	"version": "0.0.1",
+	"publisher": "MohinishVTAP",
 	"engines": {
 		"vscode": "^1.52.0"
 	},

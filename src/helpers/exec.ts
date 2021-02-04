@@ -1,7 +1,8 @@
 import * as childProcess from 'child_process';
-import { workspace } from 'vscode';
+import { workspace, WorkspaceFolder } from 'vscode';
 
-const cwd = workspace.workspaceFolders[0].uri.fsPath;
+const cwd =  workspace.rootPath;
+console.log('CWD:', cwd);
 
 export default async function(command: string, args: string[]): Promise<any> {
   return new Promise((resolve, reject) => {
@@ -13,20 +14,22 @@ export default async function(command: string, args: string[]): Promise<any> {
       batch.stdout.on('data', function(data) {
         stdout += data.toString();
       });
-
+      console.log('STDOUT:', stdout);
       batch.stderr.on('data', data => stdout += data.toString());
       batch.stderr.on('data', data => stderr += data.toString());
 
       batch.on('close', function() {
         if (stderr !== '')
         {
+            console.log('stderr:', stderr);
             return reject(stderr.trim());
         }
-
+        console.log('STDOUT:', stdout);
         resolve(stdout);
       });
     }
     catch (err) {
+        console.log('ERR:', err);
       reject(err);
     }
   });
