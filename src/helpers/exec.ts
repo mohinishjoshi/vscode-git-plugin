@@ -1,7 +1,7 @@
 import * as childProcess from 'child_process';
 import { workspace, WorkspaceFolder } from 'vscode';
 
-const cwd =  workspace.rootPath;
+let cwd =  workspace.rootPath;
 console.log('CWD:', cwd);
 
 export default async function(command: string, args: string[]): Promise<any> {
